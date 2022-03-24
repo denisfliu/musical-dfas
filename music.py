@@ -8,7 +8,6 @@ import queue
 
 
 dataQ = queue.SimpleQueue()
-isDone = False
 
 class Parser():
     def __init__(self, filename=['music.txt']):
@@ -223,7 +222,6 @@ class Notes2Music():
         self.visualize = visualize
         if self.visualize:
             self.app = App(filenames=file_name, s=self)
-            self.app.mainloop()
     # prints without repeats
     def print_notes(self):
         for start in self.starting_notes:
@@ -269,10 +267,8 @@ class Notes2Music():
         self.next_call = time.time()
         for thread in threads:
             thread.start()
-        self.app.after(10, self.app.on_after_elapsed)
         for thread in threads:
             thread.join()
-            isDone = True
         del player
         pygame.midi.quit()
 
@@ -301,14 +297,21 @@ class App(tk.Tk):
         button.pack()
     
     def start_playback(self):
-        self.s.play()
+        self.play_thread = threading.Thread(target=self.s.play)
+        self.play_thread.start()
+        self.after(10, self.on_after_elapsed)
 
     def on_after_elapsed(self):
-        value = dataQ.get(timeout=100)
+        try:
+            value = dataQ.get(block=False)
+            if value is None:
+                return
+        except queue.Empty:
+            self.after(10, self.on_after_elapsed)
+            return
         canvas_num, proc_name = value
         self.canvases[canvas_num].change_circle(proc_name)
-        if not isDone:
-            self.after(100, self.on_after_elapsed)
+        self.after(10, self.on_after_elapsed)
 
     def open_window(self, filename, width=1280):
         window = tk.Toplevel(self)
@@ -328,9 +331,12 @@ if __name__ == '__main__':
     #s.print_notes()
     #s.play_without_multithreading()
 
-    #s = Notes2Music(visualize=True, file_name=['gff_harp.txt', 'gff_woodwind.txt'])
+    s = Notes2Music(visualize=True, file_name=['gff_harp.txt', 'gff_woodwind.txt'])
     #s = Notes2Music(visualize=True, file_name=['gff_woodwind.txt'])
-    s = Notes2Music(visualize=True, file_name=['gff_harp.txt'])
+    #s = Notes2Music(visualize=True, file_name=['gff_harp.txt'])
+    s.app.mainloop()
+    dataQ.put(None)
+    s.app.play_thread.join()
 
     
     #master.geometry("330x220 + 300 + 300")

@@ -55,7 +55,7 @@ class Visualizer(tk.Canvas):
                 self.circles[group].append(circle)             
                 
     def calculate_circle_center(self, x_center, y_center, nth_circle, total_circles, big_r):
-        radians = ((2 * math.pi) / total_circles) * (nth_circle) + math.pi / 2       
+        radians = ((2 * math.pi) / total_circles) * (nth_circle-1) + math.pi / 2       
         return x_center + big_r * math.cos(radians) - self.radius(1), y_center + big_r * math.sin(radians) - self.radius(1)
     
     def calculate_dfa(self):
