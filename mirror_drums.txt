@@ -1,0 +1,75 @@
+25
+196
+drums
+bproc drum1
+0 1
+0 1
+volume 40
+0 1
+volume 25
+0 1
+eproc
+bproc drum2
+0 1
+-7 5 1
+-4 9 .5
+-4 .5
+-7 5 1
+eproc
+bproc drum3
+0 7 1
+7 .5
+0 .5
+3 7 1
+0 7 1
+eproc
+bproc drum4
+0 1
+0 7 1
+3 7 1
+7 .5
+0 .5
+eproc
+bproc drum5_1
+0 -14 1
+-3 .5
+-14 .5
+volume 40
+-3 -11 1
+-14 -3 1
+volume 25
+eproc
+bproc drum5_2
+0 -11 1
+0 .5
+-11 .5
+volume 40
+0 -8 1
+-11 0 1
+volume 25
+eproc
+bproc drum6
+volume 40
+0 1
+volume 25
+0 -11 1
+volume 40
+0 -8 1
+0 .5
+volume 25
+-11 .5
+eproc
+exec 42 drum1
+exec 42 drum2
+exec 35 drum3
+exec 35 drum4
+exec 49 drum5_1
+exec 46 drum6
+brepeat 5
+exec 46 drum5_2
+exec 46 drum6
+erepeat
+brepeat 5
+exec 46 drum5_2
+exec 46 drum6
+erepeat

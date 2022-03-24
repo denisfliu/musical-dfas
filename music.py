@@ -47,8 +47,12 @@ class Parser():
             elif i == 1:
                 self.tempo = int(line)
             elif i == 2:
-                self.instruments = list(map(lambda x: int(x), line.split()))
-                self.all_instruments.update(self.instruments)
+                if line[:-1] != 'drums':
+                    self.instruments = list(map(lambda x: int(x), line.split()))
+                    self.all_instruments.update(self.instruments)
+                else:
+                    self.instruments = [-1]
+                    self.all_instruments.update(self.instruments)
         for line in lines[3:]:
             # flush the new line                
             line = line[:-1]                
@@ -85,7 +89,10 @@ class Parser():
             elif split[0] == 'exec':
                 note_duration_list = line.split()
                 proc = note_duration_list[-1]
-                start_note = note_duration_list[-2][:-1]
+                if self.instruments[0] != -1:
+                    start_note = note_duration_list[-2][:-1]
+                else:
+                    start_note = note_duration_list[-2]
                 start_octave = note_duration_list[-2][-1]
                 l = self.proc_dict[proc]
                 Notes = {"C": 0, "C#": 1, "D": 2, "D#": 3, "E": 4, "F": 5, "F#": 6, "G": 7, "G#": 8, "A": 9, "A#": 10, "B": 11}
@@ -107,15 +114,22 @@ class Parser():
                     if self.instrument_override:
                         instruments = self.instruments
                     # calculate note based on half step position
-                    half_to_note = list(map(lambda x: notes_keys_copy[(Notes[start_note] + int(x)) % 12], notes))
+                    if self.instruments[0] == -1:
+                        half_to_note = list(map(lambda x: int(start_note) + int(x), notes))
+                    else:
+                        half_to_note = list(map(lambda x: notes_keys_copy[(Notes[start_note] + int(x)) % 12], notes))
                     # octave
                     def octave_helper(num):
                         if num < 0:
                             return -1 * int((-num) / 12 + 1)
                         else:
                             return int(num / 12)
-                    half_to_octave = list(map(lambda x: int(start_octave) + octave_helper(Notes[start_note] + int(x)), notes))
-                    combine = [x + str(y) for x, y in zip(half_to_note, half_to_octave)]
+                    if self.instruments[0] != -1:
+                        half_to_octave = list(map(lambda x: int(start_octave) + octave_helper(Notes[start_note] + int(x)), notes))
+                    if self.instruments[0] != -1:
+                        combine = [x + str(y) for x, y in zip(half_to_note, half_to_octave)]
+                    else:
+                        combine = half_to_note
                     self.add_note(Note(note=combine, volume=volume, instruments=instruments, duration=self.calculate_tempo(dur), max_repeats=self.repeat_num, sustain=sustain, proc_name=proc))
                     # dim/cresc 
                     if self.volume_change == 1:
@@ -199,6 +213,8 @@ class Note():
 
     # https://stackoverflow.com/questions/13926280/musical-note-string-c-4-f-3-etc-to-midi-note-value-in-python 
     def string_to_midi(self, n):
+        if self.instruments[0] == -1:
+            return int(n)
         Notes = [["C"],["C#","Db"],["D"],["D#","Eb"],["E"],["F"],["F#","Gb"],["G"],["G#","Ab"],["A"],["A#","Bb"],["B"]]
         answer = 0
         i = 0
@@ -243,12 +259,14 @@ class Notes2Music():
                     player.note_on(n, note.volume, channel)
             next_call = next_call + note.duration
             if self.visualize:
-                dataQ.put((thread_num, note.proc_name), block=False)
+                dataQ.put((thread_num, note.proc_name, 'on'), block=False)
             time.sleep(next_call - time.time())
             for instrum in note.instruments:
                 channel = channel_dict[instrum]
                 for n in note.midi_note:
                     player.note_off(n, note.volume, channel)
+            if self.visualize:
+                dataQ.put((thread_num, note.proc_name, 'off'), block=False)
             note = note.to_next_note() 
         
     def play(self):
@@ -256,11 +274,17 @@ class Notes2Music():
         player = pygame.midi.Output(0, 1)
         
         channel_dict = dict()
+        drums_exist = False
         for instrum in self.instruments:
             for ins in instrum:
+                if ins == -1:
+                    drums_exist = True
+                    continue
                 if ins not in channel_dict:
                     channel_dict[ins] = len(channel_dict)
                     player.set_instrument(ins, len(channel_dict) - 1)
+        if drums_exist:
+            channel_dict[-1] = 9
         threads = []
         for i, (start_note, instrum) in enumerate(zip(self.starting_notes, self.instruments)):
             threads.append(threading.Thread(target=self.play_notes, args=(player, start_note, channel_dict, i)))
@@ -309,8 +333,9 @@ class App(tk.Tk):
         except queue.Empty:
             self.after(10, self.on_after_elapsed)
             return
-        canvas_num, proc_name = value
-        self.canvases[canvas_num].change_circle(proc_name)
+        canvas_num, proc_name, on = value
+        on = True if on == 'on' else False
+        self.canvases[canvas_num].change_circle(proc_name=proc_name, on=on)
         self.after(10, self.on_after_elapsed)
 
     def open_window(self, filename, width=1280):
@@ -331,9 +356,10 @@ if __name__ == '__main__':
     #s.print_notes()
     #s.play_without_multithreading()
 
-    s = Notes2Music(visualize=True, file_name=['gff_harp.txt', 'gff_woodwind.txt'])
+    #s = Notes2Music(visualize=True, file_name=['gff_harp.txt', 'gff_woodwind.txt'])
     #s = Notes2Music(visualize=True, file_name=['gff_woodwind.txt'])
     #s = Notes2Music(visualize=True, file_name=['gff_harp.txt'])
+    s = Notes2Music(visualize=True, file_name=['mirror_drums.txt'])
     s.app.mainloop()
     dataQ.put(None)
     s.app.play_thread.join()

@@ -14,6 +14,7 @@ class Visualizer(tk.Canvas):
         self.notes_to_print = list() # prepares a list to print the notes
         self.init_notes() # initializes the notes to print
         self.counter = 0 # counter for changing color of circles
+        self.global_counter = 0 # counter for changing colors while changing colors
         self.previous_fill = None # previous circle filled
         self.procedure_space = dict() # dict of (radius for procedure + radii in (right side))
         self.horizontal_length, self.vertical_length = self.prepare_circles()
@@ -88,7 +89,7 @@ class Visualizer(tk.Canvas):
     
     def is_note(self, note):
         fchar = note[0]
-        return fchar == 'A' or fchar == 'B' or fchar == 'C' or fchar == 'D' or fchar == 'E' or fchar == 'F' or fchar == 'G'
+        return fchar.isnumeric() or fchar == 'A' or fchar == 'B' or fchar == 'C' or fchar == 'D' or fchar == 'E' or fchar == 'F' or fchar == 'G'
 
     def init_notes(self):
         play_counter = 0
@@ -105,12 +106,16 @@ class Visualizer(tk.Canvas):
         print(self.notes_to_print[self.counter])
         self.counter += 1
 
-    def change_circle(self, proc_name, fill='green'):
-        if self.previous_fill is not None:
-            self.itemconfig(self.previous_fill, fill='white')
+    def change_circle(self, proc_name, fill=['green', 'cyan', 'red', 'violet'], on=True):
+        if not on:
+            if self.previous_fill is not None:
+                self.itemconfig(self.previous_fill, fill='white')
+            return
+        fill = fill[self.global_counter % len(fill)]
         self.itemconfig(self.circles[proc_name][self.counter], fill=fill)       
         self.previous_fill = self.circles[proc_name][self.counter]
         self.counter += 1
+        self.global_counter += 1
         if self.counter == len(self.circles[proc_name]):
             self.counter = 0
             
