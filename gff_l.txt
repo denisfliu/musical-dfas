@@ -1,0 +1,101 @@
+45
+56
+0
+bproc left1
+sustain
+0 .33
+7 .34
+12 .33
+16 .33
+12 .34
+7 .33
+esustain
+eproc
+bproc left2
+0 .33
+6 .34
+9 .33
+15 .33
+9 .33
+6 .34
+eproc
+bproc left3
+0 .33
+8 .34
+12 .33
+15 .33
+12 .34
+8 .33
+eproc
+bproc left4
+0 .33
+7 .34
+10 .33
+15 .33
+10 .34
+7 .33
+eproc
+bproc left5
+0 .33
+5 .34
+9 .33
+15 .33
+9 .34
+5 .33
+eproc
+bproc left6
+0 .33
+7 .34
+11 .33
+16 .33
+11 .34
+7 .33
+eproc
+bproc left7
+0 .33
+7 .34
+10 .33
+16 .33
+10 .34
+7 .33
+eproc
+bproc left8
+0 .33
+6 .34
+12 .33
+15 .33
+12 .34
+6 .33
+5 .33
+9 .34
+15 .33
+17 .33
+15 .34
+9 .33
+eproc
+bproc left9
+0 .33
+7 .34
+10 .33
+14 .33
+10 .34
+7 .33
+eproc
+exec Bb3 left1
+exec Bb3 left2
+brepeat 1
+exec A3 left3
+erepeat
+exec G3 left4
+exec G3 left5
+exec F3 left6
+exec F3 left7
+exec Bb3 left1
+exec Bb3 left2
+exec A3 left8
+brepeat 1
+exec G3 left4
+erepeat
+brepeat 1
+exec C4 left9
+erepeat

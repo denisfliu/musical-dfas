@@ -1,0 +1,411 @@
+15
+112
+46
+bproc intro1
+voverride
+0 3 .05
+0 3 6 .05
+0 3 6 10 1.85
+eproc
+bproc intro2
+voverride
+0 .05
+0 3 .05
+0 3 7 .05
+0 3 7 9 1.85
+eproc
+bproc intro3
+voverride
+0 .05
+0 4 .05
+0 4 6 .05
+0 4 6 9 1.85
+eproc
+bproc intro4
+voverride
+0 .05
+2 .05
+5 .05
+8 1.85
+eproc
+bproc downscale
+voverride
+0 .25
+-2 .25
+-4 .25
+-5 .25
+-7 .25
+-9 .25
+-10 .25
+eproc
+bproc doubledownscale
+voverride
+0 -12 .25
+-2 -14 .25
+-4 -16 .25
+-5 -17 .25
+-7 -19 .25
+-9 -21 .25
+-10 -22 .25
+eproc
+bproc upscale
+voverride
+0 .25
+2 .25
+4 .25
+5 .25
+7 .25
+9 .25
+10 .25
+eproc
+bproc upscalealt
+voverride
+0 .25
+2 .25
+4 .25
+6 .25
+7 .25
+9 .25
+11 .25
+eproc
+bproc upscale3
+voverride
+0 .25
+2 .25
+4 .25
+eproc
+bproc refrain1
+voverride
+0 .5
+-11 .5
+-2 .5
+-7 .5
+-3 .5
+-11 .5
+-2 1.4
+eproc
+bproc refrain2
+voverride
+0 .5
+-10 .5
+-2 .5
+-7 .5
+-3 .5
+-10 .5
+-2 1.4
+eproc
+bproc refrain3
+voverride
+0 .5
+-10 .5
+-1 .5
+-7 .5
+-2 .5
+-10 .5
+-1 1.4
+eproc
+bproc refrain4
+voverride
+0 .5
+-10 .5
+-2 .5
+-6 .5
+-3 .5
+-10 .5
+-2 1.4
+eproc
+bproc refrain5
+voverride
+0 .5
+-11 .5
+-2 .5
+-7 .5
+-4 .5
+-11 .5
+-5 1.4
+eproc
+bproc mainharp1
+volume 35
+0 -35 .25
+volume 25
+-12 -23 .25
+-11 -19 .25
+-7 -14 .25
+volume 35
+-2 -7 .25
+volume 25
+-14 .25
+-11 .25
+-7 .25
+volume 35
+-3 .25
+volume 25
+-15 -19 .25
+-11 -12 .25
+-7 -14 .25
+volume 35
+-2 -19 .25
+volume 25
+-14 -24 .25
+-11 -26 .25
+-7 -31 .25
+eproc
+bproc mainharp2
+volume 35
+0 -34 .25
+volume 25
+-12 -22 .25
+-10 -19 .25
+-7 -14 .25
+volume 35
+-2 -7 .25
+volume 25
+-14 .25
+-10 .25
+-7 .25
+volume 35
+-3 .25
+volume 25
+-15 -22 .25
+-10 -10 .25
+-7 -12 .25
+volume 35
+-2 -14 .25
+volume 25
+-14 -19 .25
+-10 -22 .25
+-7 -26 .25
+eproc
+bproc mainharp3
+volume 35
+0 -34 .25
+volume 25
+-12 -22 .25
+-10 -19 .25
+-7 -15 .25
+volume 35
+-1 -7 .25
+volume 25
+-13 .25
+-10 .25
+-7 .25
+volume 35
+-2 .25
+volume 25
+-14 -19 .25
+-10 -10 .25
+-7 -12 .25
+volume 35
+-1 -13 .25
+volume 25
+-13 -17 .25
+-10 -22 .25
+-7 -25 .25
+eproc
+bproc mainharp4
+volume 35
+0 -35 .25
+volume 25
+-12 -23 .25
+-11 -19 .25
+-7 -14 .25
+volume 35
+-2 -7 .25
+volume 25
+-14 .25
+-11 .25
+-7 .25
+volume 35
+-3 .25
+volume 25
+-15 -19 .25
+-11 -12 .25
+-7 -14 .25
+volume 35
+-2 -7 .25
+volume 25
+-14 -11 .25
+-11 -14 .25
+-7 -19 .25
+eproc
+bproc mainharp5
+volume 35
+0 -37 .25
+volume 25
+-12 -22 .25
+-10 -15 .25
+-7 -13 .25
+volume 35
+-1 -10 .25
+volume 25
+-13 .25
+-10 .25
+-7 .25
+volume 35
+-2 .25
+volume 25
+-14 -25 .25
+-10 -16 .25
+-7 -20 .25
+volume 35
+-1 -25 .25
+volume 25
+-13 -28 .25
+-10 -32 .25
+-7 -34 .25
+eproc
+bproc mainharp6
+volume 35
+0 -41 .25
+volume 25
+-12 -31 .25
+-10 -22 .25
+-7 -17 .25
+volume 35
+-2 -10 .25
+volume 25
+-14 .25
+-10 .25
+-7 .25
+volume 35
+-3 .25
+volume 25
+-15 -22 .25
+-10 -10 .25
+-7 -14 .25
+volume 35
+-2 -17 .25
+volume 25
+-14 -22 .25
+-10 -26 .25
+-7 -29 .25
+eproc
+bproc mainharp7
+volume 35
+0 -33 .25
+volume 25
+-12 -21 .25
+-11 -14 .25
+-7 -11 .25
+volume 35
+-2 -7 .25
+volume 25
+-14 .25
+-11 .25
+-7 .25
+volume 35
+-4 .25
+volume 25
+-16 -21 .25
+-11 -11 .25
+-7 -14 .25
+volume 35
+-5 -5 .25
+volume 25
+-7 -5 .25
+-2 -5 .25
+-5 -5 .25
+eproc
+bcresc 1.03
+exec E3 intro1
+exec G3 intro2
+exec Bb3 intro3
+exec D4 intro4
+exec E4 intro1
+exec G4 intro2
+exec Bb4 intro3
+exec D5 intro4
+ecresc
+volume 0
+C4 1
+volume 10
+bcresc 1.015
+exec D9 downscale
+tempo 140
+exec D8 downscale
+tempo 170
+exec D9 doubledownscale
+tempo 200
+exec D8 doubledownscale
+tempo 220
+exec D6 downscale
+tempo 250
+exec D5 downscale
+ecresc
+volume 15
+bcresc 1.01
+tempo 250
+exec C2 upscale
+tempo 280
+exec C3 upscale
+tempo 300
+exec C4 upscale
+tempo 320
+exec C3 upscale
+tempo 330
+exec C4 upscale
+exec C5 upscale3
+tempo 340
+exec C4 upscale
+exec C5 upscale
+exec Bb4 upscalealt
+exec Bb5 upscalealt
+tempo 64
+Bb6 1.2
+ecresc
+volume 35
+bdim 1.05
+exec A5 refrain1
+edim
+volume 20
+bdim 1.05
+exec G5 refrain2
+edim
+volume 35
+bdim 1.05
+exec F5 refrain3
+edim
+volume 20
+bdim 1.05
+exec E5 refrain1
+edim
+volume 20
+bcresc 1.022
+exec A5 refrain1
+exec Bb5 refrain3
+exec C6 refrain4
+ecresc
+bdim 1.05
+exec A5 refrain5
+edim
+volume 20
+tempo 240
+exec Bb1 upscalealt
+tempo 260
+exec Bb2 upscalealt
+tempo 270
+exec Bb3 upscalealt
+Bb4 .25
+exec C5 upscale3
+F5 .25
+G5 .25
+tempo 64
+volume 45
+exec A5 mainharp1
+exec G5 mainharp2
+exec F5 mainharp3
+exec E5 mainharp4
+exec A5 mainharp1
+exec Bb5 mainharp5
+exec C6 mainharp6
+exec A5 mainharp7
+brepeat 1
+exec A6 mainharp1
+exec G6 mainharp2
+exec F6 mainharp3
+exec E6 mainharp4
+exec A6 mainharp1
+exec Bb6 mainharp5
+exec C7 mainharp6
+exec A6 mainharp7
+erepeat
