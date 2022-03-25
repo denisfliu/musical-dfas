@@ -1,0 +1,70 @@
+50
+196
+1
+sustain
+bproc refrain1
+volume 0
+0 1
+volume 50
+0 1
+7 1
+8 1
+15 1
+7 1
+8 1
+15 1
+eproc
+bproc refrain2
+volume 0
+0 1
+volume 50
+0 1
+7 1
+8 1
+12 1
+7 1
+8 1
+12 1
+eproc
+bproc refrain3
+volume 0
+0 1
+volume 50
+0 1
+9 1
+10 1
+14 1
+9 1
+10 1
+14 1
+eproc
+bproc restQuarter
+volume 0
+0 1
+volume 50
+eproc
+brepeat 2
+exec G4 refrain1
+exec G4 refrain1
+exec G4 refrain2
+exec G4 refrain2
+exec G4 refrain1
+exec G4 refrain1
+exec G4 refrain2
+exec G4 refrain2
+exec G4 refrain2
+exec G4 refrain2
+exec G4 refrain2
+exec G4 refrain2
+exec G4 refrain2
+exec G4 refrain2
+exec F4 refrain3
+exec C4 restQuarter
+F4 1
+D5 1
+exec C4 restQuarter
+D4 F4 B4 1.5
+D4 F4 B4 1.5
+F4 B4 D5 1
+erepeat
+esustain

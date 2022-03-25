@@ -1,0 +1,16 @@
+35
+196
+53
+brepeat 2
+C3 G4 Bb4 D5 16
+G3 F4 G4 B4 D5 16
+Eb3 Eb4 G4 Bb4 D5 16
+A3 Eb4 F4 A4 C5 16
+Ab3 Eb4 F4 Ab4 C5 16
+G3 F4 G4 Bb4 D5 16
+F3 Eb4 F4 A4 C5 16
+G3 Eb4 F4 A4 B4 13
+volume 0
+C4 3
+volume 45
+erepeat

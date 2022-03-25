@@ -250,8 +250,9 @@ class Notes2Music():
         # play sounds
         note = start_note
         next_call = self.next_call
-        for channel in channel_dict.values():
-            player.write_short(0xb0 + channel, 64, 127 if note.sustain else 0)
+        for instr, channel in channel_dict.items():
+            if instr == 1 or instr == 53:
+                player.write_short(0xb0 + channel, 64, 127 if note.sustain else 0)
         while note is not None:
             for instrum in note.instruments:
                 channel = channel_dict[instrum]
@@ -323,7 +324,7 @@ class App(tk.Tk):
     def start_playback(self):
         self.play_thread = threading.Thread(target=self.s.play)
         self.play_thread.start()
-        self.after(10, self.on_after_elapsed)
+        self.after(5, self.on_after_elapsed)
 
     def on_after_elapsed(self):
         try:
@@ -359,7 +360,7 @@ if __name__ == '__main__':
     #s = Notes2Music(visualize=True, file_name=['gff_harp.txt', 'gff_woodwind.txt'])
     #s = Notes2Music(visualize=True, file_name=['gff_woodwind.txt'])
     #s = Notes2Music(visualize=True, file_name=['gff_harp.txt'])
-    s = Notes2Music(visualize=True, file_name=['mirror_drums.txt'])
+    s = Notes2Music(visualize=True, file_name=['mirror_solo.txt', 'mirror_drums.txt', 'mirror_bass.txt', 'mirror_piano1vib.txt', 'mirror_synth.txt'])
     s.app.mainloop()
     dataQ.put(None)
     s.app.play_thread.join()
