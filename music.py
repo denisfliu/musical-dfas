@@ -283,7 +283,7 @@ class Notes2Music():
                     continue
                 if ins not in channel_dict:
                     channel_dict[ins] = len(channel_dict)
-                    player.set_instrument(ins, len(channel_dict) - 1)
+                    player.set_instrument(ins, len(channel_dict) - 1 if len(channel_dict) - 1 <= 9 else len(channel_dict))
         if drums_exist:
             channel_dict[-1] = 9
         threads = []
@@ -360,7 +360,8 @@ if __name__ == '__main__':
     #s = Notes2Music(visualize=True, file_name=['gff_harp.txt', 'gff_woodwind.txt'])
     #s = Notes2Music(visualize=True, file_name=['gff_woodwind.txt'])
     #s = Notes2Music(visualize=True, file_name=['gff_harp.txt'])
-    s = Notes2Music(visualize=True, file_name=['mirror_solo.txt', 'mirror_drums.txt', 'mirror_bass.txt', 'mirror_piano1vib.txt', 'mirror_synth.txt'])
+    #s = Notes2Music(visualize=True, file_name=['mirror_solo.txt', 'mirror_drums.txt', 'mirror_bass.txt', 'mirror_piano1vib.txt', 'mirror_synth.txt'])
+    s = Notes2Music(visualize=True, file_name=['mirror_solo.txt'])
     s.app.mainloop()
     dataQ.put(None)
     s.app.play_thread.join()
