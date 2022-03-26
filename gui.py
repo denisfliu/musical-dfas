@@ -47,8 +47,10 @@ class Visualizer(tk.Canvas):
         arrowshape = (5, 8, 2)
         # Creates the circles
         y_center = self.scale_y(.5)
+        n_dict = dict()
         for group in set(self.order_of_states):
             x_center = self.radius(self.procedure_space[group][1] - (self.procedure_space[group][1] - self.procedure_space[group][2]) / 2)
+            n_dict[group] = x_center
             total_size = len(self.procedure_dict[group])
             big_radius = self.radius(self.procedure_space[group][0])
             self.circles.setdefault(group, list())
@@ -79,6 +81,7 @@ class Visualizer(tk.Canvas):
                         if prev_group == group:
                             if total_size == 1:
                                 # self loop
+                                """
                                 loop_x_center = x_center + self.radius(15/16)
                                 loop_y_center = y_center - self.radius(15/16)
                                 start = 200
@@ -88,7 +91,16 @@ class Visualizer(tk.Canvas):
                                 angle_contact = -1 * (start + extent - 15) / 180 * math.pi
                                 x_contact = loop_x_center + math.cos(angle_contact) * radius_loop
                                 y_contact = loop_y_center + math.sin(angle_contact) * radius_loop
-                                self.create_line(x_contact + 2, y_contact - 2, x_contact, y_contact, arrow=tk.LAST, arrowshape=(self.radius(1/12), self.radius(1/6), self.radius(1/12)))
+                                self.create_line(x_contact + 2, y_contact - 1, x_contact, y_contact, arrow=tk.LAST) #arrowshape=(self.radius(1/7), self.radius(1/6), self.radius(1/7)))
+                                """
+                                loop_x_center = x_center + self.radius(15/16)
+                                loop_y_center = y_center - self.radius(19/16)
+                                loop_start_x, loop_start_y = self.calculate_circle_center(x_center, y_center, 10, 16, self.radius(1))
+                                loop_end_x, loop_end_y = self.calculate_circle_center(x_center, y_center, 11, 16, self.radius(1))
+                                loop_x1, loop_y1 = self.calculate_circle_center(x_center, y_center, 10, 16, self.radius(8/5))
+                                loop_x2, loop_y2 = self.calculate_circle_center(x_center, y_center, 11, 16, self.radius(8/5))
+                                self.create_line(loop_start_x, loop_start_y, loop_x1, loop_y1, loop_x2, loop_y2, loop_end_x, loop_end_y, smooth=1, arrow=tk.LAST)
+
                             else:
                                 # complete the circle
                                 start = -1 * (90 + half_little_circle_angle + (n - 1) * angle_between_circles)
@@ -120,7 +132,7 @@ class Visualizer(tk.Canvas):
                                     special_case = (True, True)
                                     rand = self.height - rand
                             if special_case[0]:
-                                n_dict = {key: i for i, key in enumerate(self.procedure_dict)}
+                                n_dict = {k: i for i, (k, _) in enumerate(sorted(n_dict.items(), key=lambda item: item[1]))}
                                 if n_dict[prev_group] + 1 == n_dict[group]:
                                     self.create_line(prev_x_center + self.radius(1), prev_y_center, x_center - self.radius(1), y_center, arrow=tk.LAST, arrowshape=arrowshape)
                                     continue
