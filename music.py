@@ -262,7 +262,8 @@ class Notes2Music():
             next_call = next_call + note.duration
             if self.visualize:
                 dataQ.put((thread_num, note.proc_name, 'on'), block=False)
-            time.sleep(next_call - time.time())
+            sleep_time = max(next_call - time.time(), 0)
+            time.sleep(sleep_time)
             for instrum in note.instruments:
                 channel = channel_dict[instrum]
                 for n in note.midi_note:
@@ -361,8 +362,8 @@ if __name__ == '__main__':
     #s = Notes2Music(visualize=True, file_name=['gff_harp.txt', 'gff_woodwind.txt'])
     #s = Notes2Music(visualize=True, file_name=['gff_woodwind.txt'])
     #s = Notes2Music(visualize=True, file_name=['gff_harp.txt'])
-    #s = Notes2Music(visualize=True, file_name=['mirror_drums.txt'])
-    s = Notes2Music(visualize=True, file_name=['mirror_piano1.txt', 'mirror_trumpetvib.txt', 'mirror_drums.txt', 'mirror_bass.txt', 'mirror_synth.txt', 'mirror_piano2.txt'])
+    s = Notes2Music(visualize=True, file_name=['mirror_strings.txt'])
+    #s = Notes2Music(visualize=True, file_name=['mirror_piano1.txt', 'mirror_trumpetvib.txt', 'mirror_drums.txt', 'mirror_bass.txt', 'mirror_synth.txt', 'mirror_piano2.txt'])
     s.app.mainloop()
     dataQ.put(None)
     s.app.play_thread.join()
