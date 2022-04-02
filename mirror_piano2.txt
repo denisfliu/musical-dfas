@@ -4,54 +4,54 @@
 bproc rest5
 volume 0
 0 .5
-volume 28
+volume 35
 eproc
 bproc doo
 0 1
 0 1
-volume 32
+volume 40
 0 1
-volume 28
+volume 35
 0 1
 eproc
 bproc doo0200
 0 1
 2 1
-volume 32
+volume 40
 0 1
-volume 28
+volume 35
 0 1
 eproc
 bproc doo0022
 0 1
 0 1
-volume 32
+volume 40
 2 1
-volume 28
+volume 35
 2 1
 eproc
 bproc doo0010
 0 1
 0 1
-volume 32
+volume 40
 1 1
-volume 28
+volume 35
 0 1
 eproc
 bproc doo0011
 0 1
 0 1
-volume 32
+volume 40
 1 1
-volume 28
+volume 35
 1 1
 eproc
 bproc boo0020
 0 1
 0 1
-volume 32
+volume 40
 -2 1
-volume 28
+volume 35
 0 1
 eproc
 brepeat 2

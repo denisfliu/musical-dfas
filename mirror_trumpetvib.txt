@@ -1,6 +1,6 @@
 80
 196
-56
+66 67
 bproc rest4
 volume 0
 0 .4
@@ -113,14 +113,14 @@ ioverride
 bdim 1.1
 6 .67
 7 .33
-6 .67
-7 .33
-6 .67
-7 .33
-6 .67
-7 .33
-6 .67
-7 .33
+11 .67
+6 .33
+7 .67
+6 .33
+7 .67
+6 .33
+7 .67
+6 .33
 edim
 volume 65
 eproc
@@ -311,7 +311,7 @@ exec A1 rest25
 exec Bb4 vibes4
 erepeat
 exec A1 rest25
-exec Bb4 vibes3
+exec Bb4 vibes4
 exec A1 rest25
 Bb4 .33
 exec Ab4 vibes5

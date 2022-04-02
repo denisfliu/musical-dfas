@@ -47,22 +47,27 @@ class Visualizer(tk.Canvas):
         arrowshape = (5, 8, 2)
         # Creates the circles
         y_center = self.scale_y(.5)
-        n_dict = dict()
+        n_dict = dict() # used for drawing lines later (indicates x coordinate of circle groups)
+        y_dict = dict() # used for drawing lines (indicates vertical height of circle groups)
         for group in set(self.order_of_states):
             x_center = self.radius(self.procedure_space[group][1] - (self.procedure_space[group][1] - self.procedure_space[group][2]) / 2)
             n_dict[group] = x_center
             total_size = len(self.procedure_dict[group])
             big_radius = self.radius(self.procedure_space[group][0])
             self.circles.setdefault(group, list())
+            y_dict.setdefault(group, 0)
             for n in range(total_size):
                 x, y = self.calculate_circle_center(x_center, y_center, n + 1, total_size, big_radius)
                 circle = self.create_oval(x - self.radius(1), y - self.radius(1), x + self.radius(1), y + self.radius(1))
+                y_dict[group] = max(y_dict[group], y + self.radius(1) - y_center)
                 self.itemconfig(circle, fill='black')
                 self.circles[group].append(circle)             
         # creates the lines
         prev_x_center = None
         prev_y_center = None
         prev_group = None
+        n_dict = {k: i for i, (k, _) in enumerate(sorted(n_dict.items(), key=lambda item: item[1]))}
+        y_dict = {i: value for i, (_, value) in enumerate(sorted(y_dict.items(), key=lambda item: n_dict[item[0]]))}
         group_connections = dict()
         for group in (self.order_of_states):
             group_connections.setdefault(group, set())
@@ -106,11 +111,15 @@ class Visualizer(tk.Canvas):
                                 self.create_line(x_temp, y_temp, x_end, y_end, arrow=tk.LAST, arrowshape=arrowshape)
                         else:
                             # pick a random number that is between
-                            # y_center + largest_radius and self.height
+                            # y_center + largest_radius between circle groups and self.height
                             # the line will go DOWN to that number, horizontally
                             # to the target circle, and up into the bottom of the circle
                             # if going to the left, do something slightly different
-                            rand = random.randint(int(y_center + self.radius(self.largest_radius) + 2 *self.radius(1)), int(self.height - self.radius(1) / 2))
+                            max_radius_between_circle_groups = max([value for key, value in y_dict.items() if key >= min(n_dict[group], n_dict[prev_group]) and key <= max(n_dict[group], n_dict[prev_group])])
+                            rand_lower = int(y_center + max_radius_between_circle_groups + self.radius(1))
+                            rand_upper = min(int(self.height - self.radius(1) / 2), int(rand_lower + 8*self.radius(1)))
+                            rand = random.randint(rand_lower, rand_upper)
+
                             special_case = (False, False)
                             if len(self.procedure_dict[group]) == 1 and len(self.procedure_dict[prev_group]) == 1:
                                 special_case = (True, False)
@@ -118,7 +127,6 @@ class Visualizer(tk.Canvas):
                                     special_case = (True, True)
                                     rand = self.height - rand
                             if special_case[0]:
-                                n_dict = {k: i for i, (k, _) in enumerate(sorted(n_dict.items(), key=lambda item: item[1]))}
                                 if n_dict[prev_group] + 1 == n_dict[group]:
                                     self.create_line(prev_x_center + self.radius(1), prev_y_center, x_center - self.radius(1), y_center, arrow=tk.LAST, arrowshape=arrowshape)
                                     continue

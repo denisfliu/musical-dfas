@@ -284,8 +284,8 @@ class Notes2Music():
                     drums_exist = True
                     continue
                 if ins not in channel_dict:
-                    channel_dict[ins] = len(channel_dict)
-                    player.set_instrument(ins, len(channel_dict) - 1 if len(channel_dict) - 1 <= 9 else len(channel_dict))
+                    channel_dict[ins] = len(channel_dict) if len(channel_dict) < 9 else len(channel_dict) + 1
+                    player.set_instrument(ins, channel_dict[ins])
         if drums_exist:
             channel_dict[-1] = 9
         threads = []
@@ -362,14 +362,10 @@ if __name__ == '__main__':
     #s = Notes2Music(visualize=True, file_name=['gff_harp.txt', 'gff_woodwind.txt'])
     #s = Notes2Music(visualize=True, file_name=['gff_woodwind.txt'])
     #s = Notes2Music(visualize=True, file_name=['gff_harp.txt'])
-    s = Notes2Music(visualize=True, file_name=['mirror_strings.txt'])
-    #s = Notes2Music(visualize=True, file_name=['mirror_piano1.txt', 'mirror_trumpetvib.txt', 'mirror_drums.txt', 'mirror_bass.txt', 'mirror_synth.txt', 'mirror_piano2.txt'])
+    #s = Notes2Music(visualize=True, file_name=['mirror_strings.txt'])
+    s = Notes2Music(visualize=True, file_name=['mirror_piano1.txt', 'mirror_trumpetvib.txt', 'mirror_drums.txt', 'mirror_bass.txt', 'mirror_synth.txt', 'mirror_piano2.txt', 'mirror_strings.txt'])
     s.app.mainloop()
     dataQ.put(None)
     s.app.play_thread.join()
 
-    
-    #master.geometry("330x220 + 300 + 300")
-    #app = App()
-    #app.mainloop()
-    
+    # TODO: fix the thing with max height, use max height BETWEEN circles instead
