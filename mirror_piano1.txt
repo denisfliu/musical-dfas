@@ -1,11 +1,11 @@
-50
+55
 196
-1
+1 4
 sustain
 bproc refrain1
 volume 0
 0 1
-volume 50
+volume 55
 0 1
 7 1
 8 1
@@ -17,7 +17,7 @@ eproc
 bproc refrain2
 volume 0
 0 1
-volume 50
+volume 55
 0 1
 7 1
 8 1
@@ -29,7 +29,7 @@ eproc
 bproc refrain3
 volume 0
 0 1
-volume 50
+volume 55
 0 1
 9 1
 10 1
@@ -41,7 +41,7 @@ eproc
 bproc restQuarter
 volume 0
 0 1
-volume 50
+volume 55
 eproc
 brepeat 2
 exec G4 refrain1

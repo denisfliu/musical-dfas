@@ -1,0 +1,97 @@
+28
+196
+0
+bproc rest5
+volume 0
+0 .5
+volume 28
+eproc
+bproc doo
+0 1
+0 1
+volume 32
+0 1
+volume 28
+0 1
+eproc
+bproc doo0200
+0 1
+2 1
+volume 32
+0 1
+volume 28
+0 1
+eproc
+bproc doo0022
+0 1
+0 1
+volume 32
+2 1
+volume 28
+2 1
+eproc
+bproc doo0010
+0 1
+0 1
+volume 32
+1 1
+volume 28
+0 1
+eproc
+bproc doo0011
+0 1
+0 1
+volume 32
+1 1
+volume 28
+1 1
+eproc
+bproc boo0020
+0 1
+0 1
+volume 32
+-2 1
+volume 28
+0 1
+eproc
+brepeat 2
+exec A1 rest5
+exec G4 doo
+exec G4 doo
+exec G4 doo
+exec G4 doo
+exec F4 doo
+exec F4 doo0200
+exec F4 doo
+exec F4 doo
+exec Eb4 doo
+exec Eb4 doo
+exec Eb4 doo
+exec Eb4 doo
+exec C4 doo
+exec C4 doo
+exec C4 doo
+exec C4 doo
+exec C4 doo
+exec C4 doo0022
+exec Eb4 doo
+exec F4 doo0022
+exec D4 doo
+exec D4 doo0010
+exec D4 doo
+exec D4 boo0020
+exec C4 doo
+exec D4 doo
+exec Eb4 doo
+exec F4 doo0011
+exec G4 doo
+exec G4 doo
+B4 1
+B4 1
+B4 .5
+exec A1 rest5
+exec A1 rest5
+G4 1.5
+G4 1.5
+G4 1
+erepeat

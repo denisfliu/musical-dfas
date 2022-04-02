@@ -1,4 +1,4 @@
-35
+46
 196
 drums
 bproc drum1
@@ -10,11 +10,15 @@ volume 46
 0 1
 eproc
 bproc drum2
+volume 50
+bcresc 1.1
 0 1
 -7 5 1
 -4 9 .5
 -4 .5
 -7 5 1
+ecresc
+volume 73
 eproc
 bproc drum3
 0 7 1
@@ -29,6 +33,16 @@ bproc drum4
 3 7 1
 7 .5
 0 .5
+eproc
+bproc drum4_1
+0 1
+-7 0 1
+volume 83
+-4 1 .5
+volume 73
+1 .5
+-1 .5
+-1 -7 .5
 eproc
 bproc drum5_1
 0 -14 1
@@ -59,14 +73,16 @@ volume 70
 volume 46
 -11 .5
 eproc
-brepeat 31
+brepeat 30
 exec 42 drum1
 erepeat
 exec 42 drum2
-brepeat 16
+brepeat 14
 exec 35 drum3
 exec 35 drum4
 erepeat
+exec 35 drum3
+exec 42 drum4_1
 exec 49 drum5_1
 exec 46 drum6
 brepeat 14

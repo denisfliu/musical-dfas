@@ -238,6 +238,7 @@ class Notes2Music():
         self.visualize = visualize
         if self.visualize:
             self.app = App(filenames=file_name, s=self)
+
     # prints without repeats
     def print_notes(self):
         for start in self.starting_notes:
@@ -246,13 +247,13 @@ class Notes2Music():
                 print(n)
                 n = n.alt_note
 
+    # play sounds
     def play_notes(self, player, start_note, channel_dict, thread_num):
-        # play sounds
         note = start_note
         next_call = self.next_call
-        for instr, channel in channel_dict.items():
-            if instr == 1 or instr == 53:
-                player.write_short(0xb0 + channel, 64, 127 if note.sustain else 0)
+        for instr in note.instruments:
+            channel = channel_dict[instr]
+            player.write_short(0xb0 + channel, 64, 127 if note.sustain else 0)
         while note is not None:
             for instrum in note.instruments:
                 channel = channel_dict[instrum]
@@ -360,8 +361,8 @@ if __name__ == '__main__':
     #s = Notes2Music(visualize=True, file_name=['gff_harp.txt', 'gff_woodwind.txt'])
     #s = Notes2Music(visualize=True, file_name=['gff_woodwind.txt'])
     #s = Notes2Music(visualize=True, file_name=['gff_harp.txt'])
-    #s = Notes2Music(visualize=True, file_name=['mirror_solo.txt', 'mirror_drums.txt', 'mirror_bass.txt', 'mirror_piano1vib.txt', 'mirror_synth.txt'])
-    s = Notes2Music(visualize=True, file_name=['mirror_solo.txt'])
+    #s = Notes2Music(visualize=True, file_name=['mirror_drums.txt'])
+    s = Notes2Music(visualize=True, file_name=['mirror_piano1.txt', 'mirror_trumpetvib.txt', 'mirror_drums.txt', 'mirror_bass.txt', 'mirror_synth.txt', 'mirror_piano2.txt'])
     s.app.mainloop()
     dataQ.put(None)
     s.app.play_thread.join()

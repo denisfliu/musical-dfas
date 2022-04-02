@@ -81,20 +81,6 @@ class Visualizer(tk.Canvas):
                         if prev_group == group:
                             if total_size == 1:
                                 # self loop
-                                """
-                                loop_x_center = x_center + self.radius(15/16)
-                                loop_y_center = y_center - self.radius(15/16)
-                                start = 200
-                                extent = -285 
-                                radius_loop = self.radius(3/10)
-                                arc = self.create_arc(loop_x_center - radius_loop, loop_y_center - radius_loop, loop_x_center + radius_loop, loop_y_center + radius_loop, start=start, extent=extent, style=tk.ARC)
-                                angle_contact = -1 * (start + extent - 15) / 180 * math.pi
-                                x_contact = loop_x_center + math.cos(angle_contact) * radius_loop
-                                y_contact = loop_y_center + math.sin(angle_contact) * radius_loop
-                                self.create_line(x_contact + 2, y_contact - 1, x_contact, y_contact, arrow=tk.LAST) #arrowshape=(self.radius(1/7), self.radius(1/6), self.radius(1/7)))
-                                """
-                                loop_x_center = x_center + self.radius(15/16)
-                                loop_y_center = y_center - self.radius(19/16)
                                 loop_start_x, loop_start_y = self.calculate_circle_center(x_center, y_center, 10, 16, self.radius(1))
                                 loop_end_x, loop_end_y = self.calculate_circle_center(x_center, y_center, 11, 16, self.radius(1))
                                 loop_x1, loop_y1 = self.calculate_circle_center(x_center, y_center, 10, 16, self.radius(8/5))

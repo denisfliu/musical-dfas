@@ -1,6 +1,6 @@
 70
 196
-35
+32
 bproc me1
 volume 70
 0 1.5
@@ -141,13 +141,13 @@ volume 0
 0 .5
 volume 70
 eproc
-brepeat 5
+brepeat 4
 exec C3 me1
 exec C3 me1
 exec F2 me2_1
 exec F2 me2_2
-exec E2 me3_1
-exec E2 me3_2
+exec Eb2 me3_1
+exec Eb2 me3_2
 exec A2 me4
 G2 .5
 exec A2 me4
