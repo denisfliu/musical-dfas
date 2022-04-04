@@ -10,6 +10,10 @@
 7. volume n (set volume)
 8. sustain/damper, esustain/edamper (pedal)
 9. tempo n (change tempo)
+
+## Comments
+1. Empty lines are now skipped.
+2. Hashtags comment lines out.
 ## Order
 Line 1: Starting Volume
 Line 2: Tempo 

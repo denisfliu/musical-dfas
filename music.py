@@ -68,6 +68,10 @@ class Parser():
                 self.sustain = False
             elif line == 'edim' or line == 'ecresc':
                 self.volume_change = 0
+            elif line == '':
+                continue
+            elif line[0] == '#':
+                continue
             elif split[0] == 'tempo':
                 self.tempo = int(split[1])
             elif split[0] == 'bdim':
@@ -352,18 +356,12 @@ class App(tk.Tk):
         window.title(filename)
 
 if __name__ == '__main__':
-    # order must be shorter to longest or problems with the multithreading happen
-    #s = Notes2Music(['gff_woodwind.txt'])
-    #s = Notes2Music(['gff_harp.txt'])
-    #s = Notes2Music(['music.txt'])
     #s.print_notes()
     #s.play_without_multithreading()
 
-    #s = Notes2Music(visualize=True, file_name=['gff_harp.txt', 'gff_woodwind.txt'])
-    #s = Notes2Music(visualize=True, file_name=['gff_woodwind.txt'])
-    #s = Notes2Music(visualize=True, file_name=['gff_harp.txt'])
     #s = Notes2Music(visualize=True, file_name=['mirror_strings.txt'])
-    s = Notes2Music(visualize=True, file_name=['mirror_piano1.txt', 'mirror_trumpetvib.txt', 'mirror_drums.txt', 'mirror_bass.txt', 'mirror_synth.txt', 'mirror_piano2.txt', 'mirror_strings.txt'])
+    #s = Notes2Music(visualize=True, file_name=['mirror_piano1.txt', 'mirror_piano2.txt'])
+    s = Notes2Music(visualize=True, file_name=['mirror_piano1.txt', 'mirror_vib.txt', 'mirror_drums.txt', 'mirror_bass.txt', 'mirror_synth.txt', 'mirror_piano2.txt', 'mirror_strings.txt', 'mirror_trumpet.txt', 'mirror_flugel.txt'])
     s.app.mainloop()
     dataQ.put(None)
     s.app.play_thread.join()

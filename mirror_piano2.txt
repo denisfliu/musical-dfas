@@ -1,60 +1,66 @@
 28
 196
 0
+sustain
+bproc rest5swing
+volume 0
+0 .67
+volume 40
+eproc
 bproc rest5
 volume 0
 0 .5
-volume 35
+volume 40
 eproc
 bproc doo
 0 1
 0 1
-volume 40
+volume 45
 0 1
-volume 35
+volume 40
 0 1
 eproc
 bproc doo0200
 0 1
 2 1
-volume 40
+volume 45
 0 1
-volume 35
+volume 40
 0 1
 eproc
 bproc doo0022
 0 1
 0 1
-volume 40
+volume 45
 2 1
-volume 35
+volume 40
 2 1
 eproc
 bproc doo0010
 0 1
 0 1
-volume 40
+volume 45
 1 1
-volume 35
+volume 40
 0 1
 eproc
 bproc doo0011
 0 1
 0 1
-volume 40
+volume 45
 1 1
-volume 35
+volume 40
 1 1
 eproc
 bproc boo0020
 0 1
 0 1
-volume 40
+volume 45
 -2 1
-volume 35
+volume 40
 0 1
 eproc
-brepeat 2
+brepeat 3
 exec A1 rest5
 exec G4 doo
 exec G4 doo
@@ -88,10 +94,12 @@ exec G4 doo
 exec G4 doo
 B4 1
 B4 1
-B4 .5
-exec A1 rest5
-exec A1 rest5
+B4 .33
+volume 0
+A1 1.17
+volume 40
 G4 1.5
 G4 1.5
 G4 1
 erepeat
+esustain

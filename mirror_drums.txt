@@ -73,6 +73,15 @@ volume 70
 volume 46
 -11 .5
 eproc
+bproc drum7
+0 .5
+0 .5
+1 -10 1
+-8 2 .5
+-8 2 .5
+-5 -8 .5
+-10 .5
+eproc
 brepeat 30
 exec 42 drum1
 erepeat
@@ -94,4 +103,19 @@ exec 46 drum6
 brepeat 14
 exec 46 drum5_2
 exec 46 drum6
+erepeat
+exec 49 drum5_1
+exec 46 drum6
+brepeat 13
+exec 46 drum5_2
+exec 46 drum6
+erepeat
+exec 46 drum5_2
+exec 46 drum7
+49 1
+42 1
+42 1
+42 1
+brepeat 28
+exec 42 drum1
 erepeat
