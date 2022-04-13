@@ -192,6 +192,9 @@ class Visualizer(tk.Canvas):
             if i < 3:
                 i += 1
                 continue
+            if len(lines[i]) == 1 or lines[i][0] == '#':
+                i += 1
+                continue
             if lines[i].split()[0] == 'bproc':
                 procedure_name = lines[i].split()[1]
                 while lines[i].split()[0] != 'eproc':

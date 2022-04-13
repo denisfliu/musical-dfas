@@ -55,7 +55,8 @@ class Parser():
                     self.all_instruments.update(self.instruments)
         for line in lines[3:]:
             # flush the new line                
-            line = line[:-1]                
+            if len(line) > 1:
+                line = line[:-1]                
             split = line.split()
             if len(line) > 7 and line[:7] == 'brepeat':
                 self.store_next_repeat = True
@@ -68,7 +69,7 @@ class Parser():
                 self.sustain = False
             elif line == 'edim' or line == 'ecresc':
                 self.volume_change = 0
-            elif line == '':
+            elif len(line) == 1:
                 continue
             elif line[0] == '#':
                 continue
@@ -361,7 +362,8 @@ if __name__ == '__main__':
 
     #s = Notes2Music(visualize=True, file_name=['mirror_strings.txt'])
     #s = Notes2Music(visualize=True, file_name=['mirror_piano1.txt', 'mirror_piano2.txt'])
-    s = Notes2Music(visualize=True, file_name=['mirror_piano1.txt', 'mirror_vib.txt', 'mirror_drums.txt', 'mirror_bass.txt', 'mirror_synth.txt', 'mirror_piano2.txt', 'mirror_strings.txt', 'mirror_trumpet.txt', 'mirror_flugel.txt'])
+    #s = Notes2Music(visualize=True, file_name=['mirror_piano1.txt', 'mirror_vib.txt', 'mirror_drums.txt', 'mirror_bass.txt', 'mirror_synth.txt', 'mirror_piano2.txt', 'mirror_strings.txt', 'mirror_trumpet.txt', 'mirror_flugel.txt'])
+    s = Notes2Music(visualize=True, file_name=['hmc_piano.txt'])
     s.app.mainloop()
     dataQ.put(None)
     s.app.play_thread.join()

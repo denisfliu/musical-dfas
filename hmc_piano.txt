@@ -1,0 +1,44 @@
+80
+64
+0
+# line 1 indicates the starting volume
+# line 2 indicates the starting tempo
+# line 3 is the MIDI instrument. 0 corresponds to the grand piano.
+# the music begins following the first three lines
+# you can define procedures or employ any of the funcs
+# alternatively, you can type in a series of notes (e.g., A4 B4 C5) followed by its note duration
+# the note duration is calculated based off the tempo, which is initialized here to 64
+# 1 corresponds to a QUARTER note, and everything else should be adjusted accordingly
+# in other words, 2 is a half note, and 4 would be a full measure (if 4/4)
+# rests can be employed using volume 0, note + note duration, volume x
+# defining procedures for rest lengths may be a good idea
+# here's the beginning of howl's moving castle
+
+# we use a repeat in the beginning
+# note that repeating repeats n times after the first,
+# so be careful regarding the repeat amount
+tempo 100
+volume 50
+sustain
+
+# we want to play this pattern three times so we repeat it twice
+brepeat 2
+Bb4 D5 .5
+C5 Eb5 .5
+erepeat
+
+brepeat 2
+A4 C5 .5
+Bb4 D5 .5
+erepeat
+
+brepeat 2
+G4 Bb4 .5
+A4 C5 .5
+erepeat
+
+bdim 1.05
+F#4 A4 .25
+E4 G4 .25
+D4 F#4 2.25
+esustain
