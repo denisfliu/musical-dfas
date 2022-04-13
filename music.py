@@ -365,5 +365,3 @@ if __name__ == '__main__':
     s.app.mainloop()
     dataQ.put(None)
     s.app.play_thread.join()
-
-    # TODO: fix the thing with max height, use max height BETWEEN circles instead
