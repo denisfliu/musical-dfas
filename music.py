@@ -1,4 +1,4 @@
-from re import T
+import os
 import pygame.midi
 import time
 import threading
@@ -236,13 +236,15 @@ class Note():
         return answer
 
 class Notes2Music():
-    def __init__(self, visualize=False, file_name=['music.txt']): 
+    def __init__(self, visualize=True, file_name=['music.txt']): 
         parsers = list(map(lambda x: Parser(x), file_name))
         self.starting_notes = list(map(lambda x: x.head_note, parsers))
         self.instruments = list(map(lambda x: x.all_instruments, parsers))
         self.visualize = visualize
+        """
         if self.visualize:
             self.app = App(filenames=file_name, s=self)
+        """
 
     # prints without repeats
     def print_notes(self):
@@ -316,19 +318,27 @@ class Notes2Music():
         return num == '0' or num == '1' or num == '2' or num == '3' or num == '4' or num == '5' or num == '6' or num == '7' or num == '8' or num == '8' or num == '9'
 
 class App(tk.Tk):
-    def __init__(self, filenames, s):
+    def __init__(self):
         super().__init__()
-        self.s = s
+        self.s = None
         self.title('Main')
         self.windows = list()
         self.canvases = list()
         self.geometry("350x30")
-        for filename in filenames:
-            self.open_window(filename)
-        button = tk.Button(self, text='Play', command=self.start_playback)
-        button.pack()
+
+        for _, dirs, _ in os.walk('music'):
+            for name in dirs:
+                button = tk.Button(self, text=name, command=lambda: self.start_playback(name))
+                button.pack()
+            
     
-    def start_playback(self):
+    def start_playback(self, name):
+        filenames = None
+        for _, _, files in os.walk(os.path.join('music', name)):
+            filenames = files 
+        for filename in filenames:
+            self.open_window(f'music/{name}/{filename}', filename)
+        self.s = Notes2Music(visualize=True, file_name=map(lambda x: f'music/{name}/{x}', files))
         self.play_thread = threading.Thread(target=self.s.play)
         self.play_thread.start()
         self.after(5, self.on_after_elapsed)
@@ -346,7 +356,7 @@ class App(tk.Tk):
         self.canvases[canvas_num].change_circle(proc_name=proc_name, on=on)
         self.after(10, self.on_after_elapsed)
 
-    def open_window(self, filename, width=1280):
+    def open_window(self, filename, name, width=1280):
         window = tk.Toplevel(self)
         visualizer = Visualizer(filename, window, width)
         self.canvases.append(visualizer)
@@ -354,7 +364,7 @@ class App(tk.Tk):
         self.windows.append(window)
         # Pack the canvas to the main window and make it expandable
         visualizer.pack(fill = tk.BOTH)
-        window.title(filename)
+        window.title(name)
 
 if __name__ == '__main__':
     #s.print_notes()
@@ -362,10 +372,10 @@ if __name__ == '__main__':
 
     #s = Notes2Music(visualize=True, file_name=['mirror_strings.txt'])
     #s = Notes2Music(visualize=True, file_name=['mirror_piano1.txt', 'mirror_piano2.txt'])
-    #s = Notes2Music(visualize=True, file_name=['mirror_piano1.txt', 'mirror_vib.txt', 'mirror_drums.txt', 'mirror_bass.txt', 'mirror_synth.txt', 'mirror_piano2.txt', 'mirror_strings.txt', 'mirror_trumpet.txt', 'mirror_flugel.txt'])
     #s = Notes2Music(visualize=True, file_name=['hmc_piano.txt'])
     #s = Notes2Music(visualize=True, file_name=['david.txt', 'david1.txt'])
-    s = Notes2Music(visualize=True, file_name=['music/great_fairy_fountain/gff_harp.txt', 'music/great_fairy_fountain/gff_woodwind.txt'])
-    s.app.mainloop()
+    #s = Notes2Music(visualize=True, file_name=['music/great_fairy_fountain/gff_harp.txt', 'music/great_fairy_fountain/gff_woodwind.txt'])
+    app = App()
+    app.mainloop()
     dataQ.put(None)
-    s.app.play_thread.join()
+    app.play_thread.join()

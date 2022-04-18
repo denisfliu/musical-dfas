@@ -4,6 +4,7 @@
 # line 1 indicates the starting volume
 # line 2 indicates the starting tempo
 # line 3 is the MIDI instrument. 0 corresponds to the grand piano.
+
 # the music begins following the first three lines
 # you can define procedures or employ any of the funcs
 # alternatively, you can type in a series of notes (e.g., A4 B4 C5) followed by its note duration
