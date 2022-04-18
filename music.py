@@ -326,11 +326,13 @@ class App(tk.Tk):
         self.canvases = list()
         self.geometry("350x30")
 
+        buttons = list()
         for _, dirs, _ in os.walk('music'):
             for name in dirs:
-                button = tk.Button(self, text=name, command=lambda: self.start_playback(name))
-                button.pack()
+                buttons.append(tk.Button(self, text=name, command=lambda x=name: self.start_playback(x)))
             
+        for button in buttons:
+            button.pack()
     
     def start_playback(self, name):
         filenames = None
