@@ -10,6 +10,7 @@ A variety of example text files are provided in the music folder that explain ho
 3. brepeat n, erepeat (repeat)
 4. bproc name, eproc (define procedure)  
     4a. voverride (overrides volume of procedure and uses volume of main)  
+    4b. ioverride (overrides instrument of procedure and uses instrument of main)
 5. exec name starting_note (execute procedure)
 6. instrument x y z (change instruments)
 7. volume n (set volume)
