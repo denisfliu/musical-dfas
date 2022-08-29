@@ -324,7 +324,7 @@ class App(tk.Tk):
         self.title('Main')
         self.windows = list()
         self.canvases = list()
-        self.geometry("350x30")
+        self.geometry("350x100")
 
         buttons = list()
         for _, dirs, _ in os.walk('music'):
@@ -336,6 +336,17 @@ class App(tk.Tk):
     
     def start_playback(self, name):
         filenames = None
+        self.fill = None
+        # add color change here
+        if name == 'mirror':
+            self.fill = ['#5eacbb', '#770088', '#bb062a', '#ef3d50', '#2a2758']
+        elif name == 'great_fairy_fountain':
+            self.fill = ['#ff314c', '#f4c766', '#765824']
+        elif name == 'howls':
+            self.fill = ['#9ee5ff', '#d1d6da', '#f6b489', '#f1df71', '#aa8a56', '#a5ab91', '#d7948b']
+        else:
+            self.fill = ['#5eacbb', '#770088', '#bb062a', '#ef3d50', '#2a2758']
+
         for _, _, files in os.walk(os.path.join('music', name)):
             filenames = files 
         for filename in filenames:
@@ -355,7 +366,7 @@ class App(tk.Tk):
             return
         canvas_num, proc_name, on = value
         on = True if on == 'on' else False
-        self.canvases[canvas_num].change_circle(proc_name=proc_name, on=on)
+        self.canvases[canvas_num].change_circle(proc_name=proc_name, on=on, fill=self.fill)
         self.after(10, self.on_after_elapsed)
 
     def open_window(self, filename, name, width=1280):
@@ -368,16 +379,14 @@ class App(tk.Tk):
         visualizer.pack(fill = tk.BOTH)
         window.title(name)
 
-if __name__ == '__main__':
-    #s.print_notes()
-    #s.play_without_multithreading()
-
-    #s = Notes2Music(visualize=True, file_name=['mirror_strings.txt'])
-    #s = Notes2Music(visualize=True, file_name=['mirror_piano1.txt', 'mirror_piano2.txt'])
-    #s = Notes2Music(visualize=True, file_name=['hmc_piano.txt'])
-    #s = Notes2Music(visualize=True, file_name=['david.txt', 'david1.txt'])
-    #s = Notes2Music(visualize=True, file_name=['music/great_fairy_fountain/gff_harp.txt', 'music/great_fairy_fountain/gff_woodwind.txt'])
+def main():
     app = App()
     app.mainloop()
     dataQ.put(None)
     app.play_thread.join()
+
+
+if __name__ == '__main__':
+    #s.print_notes()
+    #s.play_without_multithreading()
+    main()

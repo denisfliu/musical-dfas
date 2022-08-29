@@ -1,0 +1,25 @@
+70
+64
+92
+# this is an example of twinkle twinkle little star
+# defined without procedures
+# midi instrument: Pad 5 (bowed)
+
+C5 .5
+C5 .5
+G5 .5
+G5 .5
+A5 .5
+A5 .5
+G5 1
+F5 .5
+F5 .5
+E5 .5
+E5 .5
+D5 .3
+E5 .1
+D5 .1
+C5 .1
+D5 .375
+E5 .1
+C5 .9

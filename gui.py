@@ -105,8 +105,8 @@ class Visualizer(tk.Canvas):
                                 goal_angle = math.pi / 2 + abc_radians * n - hlca_radians
                                 x_end = x_center + big_radius * math.cos(goal_angle)
                                 y_end = y_center + big_radius * math.sin(goal_angle)
-                                x_temp = x_center + big_radius * math.cos(goal_angle - 1.0/30)
-                                y_temp = y_center + big_radius * math.sin(goal_angle - 1.0/30)
+                                x_temp = x_center + big_radius * math.cos(goal_angle - 1.0/(total_size * 7))
+                                y_temp = y_center + big_radius * math.sin(goal_angle - 1.0/(total_size * 7))
                                 d1 = 4 *math.sqrt((x_end - x_temp) ** 2 + (y_end - y_temp) ** 2)
                                 arrowshape = (d1, d1 * math.sqrt(2), d1/2)
                                 self.create_line(x_temp, y_temp, x_end, y_end, arrow=tk.LAST, arrowshape=arrowshape)
@@ -168,8 +168,8 @@ class Visualizer(tk.Canvas):
                 goal_angle = math.pi / 2 + abc_radians * n - hlca_radians
                 x_end = x_center + big_radius * math.cos(goal_angle)
                 y_end = y_center + big_radius * math.sin(goal_angle)
-                x_temp = x_center + big_radius * math.cos(goal_angle - 1.0/30)
-                y_temp = y_center + big_radius * math.sin(goal_angle - 1.0/30)
+                x_temp = x_center + big_radius * math.cos(goal_angle - 1.0/(total_size * 7))
+                y_temp = y_center + big_radius * math.sin(goal_angle - 1.0/(total_size * 7))
                 d1 = 4 *math.sqrt((x_end - x_temp) ** 2 + (y_end - y_temp) ** 2)
                 arrowshape = (d1, d1 * math.sqrt(2), d1/2)
                 self.create_line(x_temp, y_temp, x_end, y_end, arrow=tk.LAST, arrowshape=arrowshape)

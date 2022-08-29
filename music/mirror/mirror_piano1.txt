@@ -3,6 +3,7 @@
 4 1
 sustain
 bproc refrain1
+ioverride
 volume 0
 0 1
 volume 55
@@ -15,6 +16,7 @@ volume 55
 15 1
 eproc
 bproc refrain2
+ioverride
 volume 0
 0 1
 volume 55
@@ -27,6 +29,7 @@ volume 55
 12 1
 eproc
 bproc refrain3
+ioverride
 volume 0
 0 1
 volume 55
@@ -83,4 +86,24 @@ exec G4 refrain2
 exec F4 refrain3
 exec F4 refrain3
 erepeat
+brepeat 127
+exec A1 restQuarter
+erepeat
+instrument 11 10
+exec G4 refrain1
+exec G4 refrain1
+exec G4 refrain2
+exec G4 refrain2
+exec G4 refrain1
+exec G4 refrain1
+exec G4 refrain2
+exec G4 refrain2
+exec G4 refrain2
+exec G4 refrain2
+exec G4 refrain2
+exec G4 refrain2
+exec G4 refrain2
+exec G4 refrain2
+exec F4 refrain3
+exec F4 refrain3
 esustain
